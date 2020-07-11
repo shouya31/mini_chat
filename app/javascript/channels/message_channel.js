@@ -2,14 +2,23 @@ import consumer from "./consumer"
 
 consumer.subscriptions.create("MessageChannel", {
   connected() {
-    console.log("connect!");
   },
 
   disconnected() {
-    // Called when the subscription has been terminated by the server
   },
 
+// WebSocketを通じてデータの更新がある際に実行される関数
   received(data) {
-    // Called when there's incoming data on the websocket for this channel
+    // メッセージを表示する要素のHTMLを取得する
+    const messagesList = document.getElementById('messages')
+    // 表示するP要素を作成する
+    const elementP = document.createElement('p')
+    // 表示する値を取得する
+    const textNode = document.createTextNode(data.text.content);
+
+    // 取得した値をPタグに挿入する
+    elementP.appendChild(textNode)
+    // 実際にブラウザに表示する
+    messagesList.appendChild(elementP)
   }
 });

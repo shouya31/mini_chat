@@ -1,6 +1,7 @@
 <h1>Chat room</h1>
-<%= form_with(model: @message, local: true) do |form| %>
-  <%= form.text_field :text%>
+<%= form_with(model: @message, local: true, id: "message_form") do |form| %>
+  <%= form.text_field :content%>
+  <%= form.submit "送信"%>
 <% end %>
 
 <div id="messages">
